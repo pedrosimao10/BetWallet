@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="main.css">
+    <title>My Bets</title>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="homepage.html">
+        <img src="images/newBetWalletLogo.png" alt="">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="my-bets.html">My Bets</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="statistics.html">Statistics</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="rankings.html">Rankings</a>
+          </li>
+          <li class="nav-item">
+            <p class="nav-link limits-info" href="rankings.html" id="spent">Spent 43€</p>
+            <p class="nav-link limits-info" href="rankings.html" id="limit">Limit 100€</p>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- Add Bet Button -->
+    <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addBetModal" id="add-bet">Add Bet</button>
+      </div>
+    </div>
+
+    <!-- Bet Table -->
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped" id="bet-table">
+          <thead>
+            <tr>
+              <th scope="col">Edit</th>
+              <th scope="col">Game</th>
+              <th scope="col">Sports Type</th>
+              <th scope="col">Date</th>
+              <th scope="col">Stake</th>
+              <th scope="col">Return</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Add Bet Modal -->
+    <div class="modal fade" id="addBetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add Bet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group">
+              <span class="input-group-text">Events</span>
+              <input type="text" aria-label="team1" class="form-control" placeholder="First Team" id="team1-input">
+              <input type="text" aria-label="team2" class="form-control" placeholder="Second Team" id="team2-input">
+            </div>
+            <p></p>
+
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="sports-type">Sports type</label>
+              <select class="form-select" id="sports-type-input">
+                <option selected>Select</option>
+                <option value="Football">Football</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Volleyball">Volleyball</option>
+                <option value="Handball">Handball</option>
+                <option value="Futsal">Futsal</option>
+                <option value="Women's Football">Women's Footbal</option>
+                <option value="Women's Basketball">Women's Basketball</option>
+                <option value="Women's Volleyball">Women's Volleyball</option>
+                <option value="Women's Water Polo">Women's Water Polo</option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="events">Date</span>
+              </div>
+              <input type="text" class="form-control pick-date" aria-label="Date" aria-describedby="date" placeholder="dd/mm/yyyy" id="date-input">
+            </div>
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="stake">Stake</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Stake" aria-describedby="stake" id="stake-input" placeholder="Bet Amount">
+            </div>
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="return">Return</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Return" aria-describedby="return" id="return-input" placeholder="Empty if bet Lost">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="save-bet-button">Save Bet</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edit Bet Modal -->
+    <div class="modal fade" id="editBetModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Bet</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group">
+              <span class="input-group-text">Events</span>
+              <input type="text" aria-label="team1" class="form-control" placeholder="First Team" id="edit-team1">
+              <input type="text" aria-label="team2" class="form-control" placeholder="Second Team" id="edit-team2">
+            </div>
+            <p></p>
+
+            <div class="input-group mb-3">
+              <label class="input-group-text" for="sports-type">Sports type</label>
+              <select class="form-select" id="edit-sports-type">
+                <option selected>Select</option>
+                <option value="Football">Football</option>
+                <option value="Basketball">Basketball</option>
+                <option value="Volleyball">Volleyball</option>
+                <option value="Handball">Handball</option>
+                <option value="Futsal">Futsal</option>
+                <option value="Women's Football">Women's Footbal</option>
+                <option value="Women's Basketball">Women's Basketball</option>
+                <option value="Women's Volleyball">Women's Volleyball</option>
+                <option value="Women's Water Polo">Women's Water Polo</option>
+              </select>
+            </div>
+
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="events">Date</span>
+              </div>
+              <input type="text" class="form-control pick-date" aria-label="Date" aria-describedby="date" placeholder="dd/mm/yyyy" id="edit-date">
+            </div>
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="stake">Stake</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Stake" aria-describedby="stake" id="edit-stake">
+            </div>
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="return">Return</span>
+              </div>
+              <input type="text" class="form-control" aria-label="Return" aria-describedby="return" id="edit-return">
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="edit-bet-button">Save Changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

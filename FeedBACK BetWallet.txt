@@ -1,0 +1,12 @@
+TESTES
+
+-Alterar a página dos rankings para meter dados sobre onde o utilizador anda a perder mais dinheiro e a ganhar mais dinheiro (FÁBIO)
+
+-Botão de adicionar aposta não muito perceptível( PEDRO FIGUEIREDO)
+
+-Ao verificar o dia em que se perdeu mais dinheiro o drop down deveria ficar aberto (PEDRO FIGUEIREDO)
+
+-Implementar calendário ao adicionar aposta (BSS)
+
+-Ser possível ver as estatísticas apenas passando o rato no gráfico(BSS)
+
